@@ -71,7 +71,7 @@
 - (void) drawRect:(CGRect)rect
 {
     if (self.selectedBtns.count == 0) return ;
-    //把所有选中的按钮中心点连线
+    //把所有选中的按钮中心点连线 创建路径
     UIBezierPath * path = [UIBezierPath bezierPath] ;
     if (self.userInteractionEnabled) {
         [[UIColor yellowColor] set];
@@ -154,6 +154,7 @@
         [self.selectedBtns removeAllObjects] ;
         
         //手势密码绘制完成后回调
+        // 注意：我们在密码判定过程中是通过根据先前布局按钮的时候定义的按钮tag值进行字符串拼接，密码传值是通过代理实现。
         if ([self.delegate respondsToSelector:@selector(gestureLockView:drawRectFinished:)]) {
             [self.delegate gestureLockView:self drawRectFinished:gesturePwd] ;
         }

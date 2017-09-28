@@ -77,14 +77,14 @@
     
     self.resetPswBtn.hidden = YES ;
     
-    switch (_unlockType) {
-        case WUUnlockTypeCreatePwd:
+    switch (_unlockType) {//判断枚举
+        case WUUnlockTypeCreatePwd://创建手势
         {
             self.gestureLockindicator.hidden = NO ;
             self.otherAcountBtn.hidden = self.forgetPswbtn.hidden = self.nameLable.hidden = self.headIcon.hidden = YES ;
         }
             break;
-        case WUUnlockTypeValidatePwd:
+        case WUUnlockTypeValidatePwd://校验手势
         {
             self.gestureLockindicator.hidden = YES ;
             self.otherAcountBtn.hidden = self.forgetPswbtn.hidden = self.nameLable.hidden = self.headIcon.hidden = NO ;
@@ -113,7 +113,7 @@
     // 账户名
     UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake((self.view.frame.size.width - 100) * 0.5, 90, 100, 20)];
     nameLabel.textAlignment = NSTextAlignmentCenter;
-    nameLabel.text = @"smile丽";
+    nameLabel.text = @"最爱是深蓝";
     nameLabel.font = [UIFont systemFontOfSize:12];
     nameLabel.textColor = [UIColor orangeColor];
     [self.view addSubview:nameLabel];
@@ -230,6 +230,8 @@
     }
 }
 
+
+//抖动动画
 - (void)shakeAnimationForView:(UIView *)view{
     
     CALayer * viewLayer = view.layer ;
@@ -237,12 +239,12 @@
     CGPoint left = CGPointMake(position.x - 10, position.y) ;
     CGPoint right = CGPointMake(position.x + 10, position.y) ;
     
-    CABasicAnimation * animation = [CABasicAnimation animationWithKeyPath:@"position"] ;
+    CABasicAnimation * animation = [CABasicAnimation animationWithKeyPath:@"position"] ;//平移动画
     [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]] ;
     [animation setFromValue:[NSValue valueWithCGPoint:left]] ;
     [animation setToValue:[NSValue valueWithCGPoint:right]] ;
     [animation setAutoreverses:YES] ;
-    [animation setDuration:0.08] ;
+    [animation setDuration:0.08] ;//动画持续时间
     [animation setRepeatCount:3] ;
     
     [viewLayer addAnimation:animation forKey:nil] ;
